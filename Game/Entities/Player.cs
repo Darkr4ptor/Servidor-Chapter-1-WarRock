@@ -221,7 +221,7 @@ namespace Game.Entities
             }
             catch
             {
-                ServerLogger.Instance.Append(ServerLogger.AlertLevel.BugWarning, String.Concat("Player ", this.User.Displayname, " xp and dinars could not be calculated."));
+                ServerLogger.Instance.Append2(ServerLogger.AlertLevel.BugWarning, String.Concat("Player ", this.User.Displayname, " xp and dinars could not be calculated."));
             }
         }
 

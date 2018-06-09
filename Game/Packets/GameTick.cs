@@ -3,15 +3,15 @@
         public GameTick(Entities.Room r)
             : 
             base((ushort)Enums.Packets.GameTick) {
-            Append(r.UpTick); // Spawn Counter
-            Append(r.DownTick); // Time Left
-            Append(r.CurrentGameMode.CurrentRoundTeamA());
-            Append(r.CurrentGameMode.CurrentRoundTeamB());
-            Append(r.CurrentGameMode.ScoreboardA());
-            Append(r.CurrentGameMode.ScoreboardB());
-            Append(2); // ?
-            Append(0); // Conquest related
-            Append(30); // Conquest related
+            Append2(r.UpTick); // Spawn Counter
+            Append2(r.DownTick); // Time Left
+            Append2(r.CurrentGameMode.CurrentRoundTeamA());
+            Append2(r.CurrentGameMode.CurrentRoundTeamB());
+            Append2(r.CurrentGameMode.ScoreboardA());
+            Append2(r.CurrentGameMode.ScoreboardB());
+            Append2(2); // ?
+            Append2(0); // Conquest related
+            Append2(30); // Conquest related
         }
     }
 }

@@ -13,14 +13,14 @@ namespace Game.Packets {
 
         public Equipment(ErrorCode errorCode)
             : base((ushort)Enums.Packets.Equipment) {
-            Append((uint)errorCode);
+            Append2((uint)errorCode);
         }
 
         public Equipment(Classes cClass, string equipment)
             : base((ushort)Enums.Packets.Equipment) {
-            Append(Core.Constants.Error_OK);
-            Append((byte)cClass);
-            Append(equipment);
+            Append2(Core.Constants.Error_OK);
+            Append2((byte)cClass);
+            Append2(equipment);
         }
     }
 }

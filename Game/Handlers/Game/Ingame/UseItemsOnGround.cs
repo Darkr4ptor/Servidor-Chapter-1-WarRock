@@ -51,7 +51,7 @@ namespace Game.Handlers.Game.Ingame
                         break;
 
                     default:
-                        ServerLogger.Instance.Append(ServerLogger.AlertLevel.Cheating, String.Concat("Player ", Player.User.Displayname, " used an unkown item ", _itemCode));
+                        ServerLogger.Instance.Append2(ServerLogger.AlertLevel.Cheating, String.Concat("Player ", Player.User.Displayname, " used an unkown item ", _itemCode));
                         respond = false;
                         break;
 

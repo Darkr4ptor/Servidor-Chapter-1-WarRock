@@ -36,7 +36,7 @@ namespace Game
         public void WriteError(string message)
         {
             this.WriteLog(ConsoleColor.Red, ConsoleColor.DarkRed, message);
-            ServerLogger.Instance.Append(ServerLogger.AlertLevel.ServerError, message);
+            ServerLogger.Instance.Append2(ServerLogger.AlertLevel.ServerError, message);
         }
 
         public void WriteDebug(string message)
@@ -56,7 +56,7 @@ namespace Game
         public void WriteBoth(string message)
         {
             this.WriteLog(ConsoleColor.Magenta, ConsoleColor.DarkMagenta, message);
-            ServerLogger.Instance.Append(ServerLogger.AlertLevel.Unknown, message);
+            ServerLogger.Instance.Append2(ServerLogger.AlertLevel.Unknown, message);
         }
 
         private static Log instance;

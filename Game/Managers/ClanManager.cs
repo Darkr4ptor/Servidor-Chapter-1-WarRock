@@ -52,7 +52,7 @@ namespace Game.Managers
            }
       catch
            {
-               ServerLogger.Instance.Append(ServerLogger.AlertLevel.ServerError, "Could not load clan table from DB");
+               ServerLogger.Instance.Append2(ServerLogger.AlertLevel.ServerError, "Could not load clan table from DB");
            }
          
             return _result;
@@ -75,7 +75,7 @@ namespace Game.Managers
        private Objects.Clan QueueForClan(uint _clanId)
         {
             Objects.Clan NewClan = null;
-            ServerLogger.Instance.Append(ServerLogger.AlertLevel.Information, "Attempting to perform  a DB search for a missing clan");
+            ServerLogger.Instance.Append2(ServerLogger.AlertLevel.Information, "Attempting to perform  a DB search for a missing clan");
             try
             {
                 MySqlCommand CMD = new MySqlCommand("SELECT name, members, tag, wins, losses, draws, master FROM clan WHERE disbanded = 0 AND validated = 1 AND id = " 
@@ -101,20 +101,20 @@ namespace Game.Managers
                     NewClan = TempClan;
                 }
                  else
-                    ServerLogger.Instance.Append(ServerLogger.AlertLevel.ServerError, "Could not find clan with id after performing a queue to DB" + _clanId.ToString());
+                    ServerLogger.Instance.Append2(ServerLogger.AlertLevel.ServerError, "Could not find clan with id after performing a queue to DB" + _clanId.ToString());
 
                 if (!Reader.IsClosed)
                     Reader.Close();
             }
             catch
             {
-                ServerLogger.Instance.Append(ServerLogger.AlertLevel.ServerError, "Failed to perform a queue to update ClanList");
+                ServerLogger.Instance.Append2(ServerLogger.AlertLevel.ServerError, "Failed to perform a queue to update ClanList");
             }
 
             if (NewClan != null)
                 ClanList.TryAdd(NewClan.Id, NewClan);
 
-            ServerLogger.Instance.Append(ServerLogger.AlertLevel.Information, "A new clan has been found. Updating the Concurrent Dictionary...");
+            ServerLogger.Instance.Append2(ServerLogger.AlertLevel.Information, "A new clan has been found. Updating the Concurrent Dictionary...");
 
             return NewClan;
         }

@@ -37,7 +37,7 @@ namespace Game {
                 return;
             }
 
-            ServerLogger.Instance.Append(ServerLogger.AlertLevel.Information, "-----------------------Server booted-------------------------");
+            ServerLogger.Instance.Append2(ServerLogger.AlertLevel.Information, "-----------------------Server booted-------------------------");
 
             if (!Databases.Init()) {
                 Log.Instance.WriteError("Failed to initilize all database connections.");
@@ -115,7 +115,7 @@ namespace Game {
             Console.WriteLine("Maximum room count is " + GameConfig.MaxRoomCount.ToString());
             Console.ForegroundColor = ConsoleColor.Gray;
 
-            ServerLogger.Instance.Append("Server initialiced correctly");
+            ServerLogger.Instance.Append2("Server initialiced correctly");
 
             // Start up the listener :)
             isRunning = (new ServerListener((int)Ports.Game)).Start();
@@ -124,7 +124,7 @@ namespace Game {
             {
                 TimeSpan loadTime = DateTime.Now - startTime;
                 Log.Instance.WriteLine(string.Format("Emulator loaded in {0} milliseconds!", loadTime.TotalMilliseconds));
-                ServerLogger.Instance.Append(ServerLogger.AlertLevel.Information, string.Format("Emulator loaded in {0} milliseconds!", loadTime.TotalMilliseconds));
+                ServerLogger.Instance.Append2(ServerLogger.AlertLevel.Information, string.Format("Emulator loaded in {0} milliseconds!", loadTime.TotalMilliseconds));
             }
 
             startTime = DateTime.Now;
@@ -143,7 +143,7 @@ namespace Game {
                 }
 
                 //ping to auth  server
-                AuthServer.Send(new Packets.Internal.Ping());
+               // AuthServer.Send(new Packets.Internal.Ping());
 
                 serverLoops++;
 

@@ -9,7 +9,7 @@ namespace Game.Packets
     {
         public LeaveServer() : base(24576)
         {
-            Append(1);
+            Append2(1);
         }
     }
 }

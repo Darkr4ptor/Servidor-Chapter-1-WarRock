@@ -5,7 +5,7 @@ namespace Game.Packets {
 
         public CountDown(uint seconds)
             : base((ushort)Enums.Packets.GameCountDown) {
-                Append(0);
+                Append2(0);
         }
     }
 }

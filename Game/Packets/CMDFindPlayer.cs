@@ -6,30 +6,30 @@
             :base((ushort)Enums.Packets.CMDFindPlayer)
         {
             if (Target == null)
-                Append(0);
+                Append2(0);
             else
             {
-                Append(1);
-                Append(Target.ID);
-                Append(Target.RemoteEndPoint.ToString());
-                Append((byte)Target.Premium);
-                Append(Target.XP);
-                Append(Target.Money);
-                Append(Target.Kills);
-                Append(Target.Deaths);
-                Append(Target.Deaths);
+                Append2(1);
+                Append2(Target.ID);
+                Append2(Target.RemoteEndPoint.ToString());
+                Append2((byte)Target.Premium);
+                Append2(Target.XP);
+                Append2(Target.Money);
+                Append2(Target.Kills);
+                Append2(Target.Deaths);
+                Append2(Target.Deaths);
                 if (Target.Room != null)
                 {
-                    Append(Target.Room.ID);
-                    Append(Target.Room.Name);
-                    Append(Target.Room.Password);
+                    Append2(Target.Room.ID);
+                    Append2(Target.Room.Name);
+                    Append2(Target.Room.Password);
                 }
                 else
                 {
                     Fill(2, -1);
                 }
 
-                Append(Target.SessionID);
+                Append2(Target.SessionID);
             }
           
         }

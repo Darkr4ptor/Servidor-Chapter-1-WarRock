@@ -35,26 +35,10 @@ namespace Authorization.Packets {
                 Append("NULL");       // User password (NULL).
                 Append(u.Displayname);    // Displayname or nickname.
                 Append(u.SessionID);      // Session ID
-                Append(1);              // Unknown?
+                Append(0);              // Unknown?
                 Append(0);              // Unknown?
                 Append(u.AccessLevel);  //1 = user Admin is 3, DEV is 5
                 Append(1.11025);        // PF_20
-
-            /*Version
-/subver
-Open Browser
-/url http://google.com
-Close Browser
-/close url
-Close Room
-/rdis <room #>
-Kick Player
-/kick <player name>
-Player Info
-/find <player name>
-Will display like this
-ID, IP, Prem, Exp, Dinar, Kill, Death, Scale(CQC,UBAN,BG)
-             * */
              
                 ArrayList serverList = Managers.ServerManager.Instance.GetAllAuthorized();
                 Append(serverList.Count);               // Server count

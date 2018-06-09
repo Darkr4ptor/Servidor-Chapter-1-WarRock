@@ -152,7 +152,7 @@ namespace Game.Handlers {
                                 foreach (Entities.User usr in targetList)
                                     usr.Send(outBuffer);
                             }
-                            ServerLogger.Instance.Append(ServerLogger.AlertLevel.Information, String.Concat("Player ", u.Displayname, " created a room"));
+                            ServerLogger.Instance.Append2(ServerLogger.AlertLevel.Information, String.Concat("Player ", u.Displayname, " created a room"));
                         } else {
                             channel.ForceFreeSlot(openRoomId); // Force the room slot open again.
                             u.Send(new Packets.RoomCreation(Enums.RoomCreationErrors.GenericError));

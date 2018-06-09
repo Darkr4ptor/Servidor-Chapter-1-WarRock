@@ -2,10 +2,10 @@
     class Explosives : Core.Networking.OutPacket {
         public Explosives(string[] blocks)
             : base((ushort)Enums.Packets.Explosives) {
-                Append(Core.Constants.Error_OK);
+                Append2(Core.Constants.Error_OK);
                 for (byte i = 0; i < blocks.Length; i++)
-                    Append(blocks[i]);
-                Append(0);
+                    Append2(blocks[i]);
+                Append2(0);
         }
     }
 }

@@ -8,28 +8,28 @@ namespace Game.Packets {
         public Scoreboard(Entities.Room r)
             : base((ushort)Enums.Packets.Scoreboard) {
 
-                Append(Core.Constants.Error_OK);
+                Append2(Core.Constants.Error_OK);
 
                 if (r.Mode == Enums.Mode.Explosive) {
-                    Append(r.CurrentGameMode.CurrentRoundTeamA());
-                    Append(r.CurrentGameMode.CurrentRoundTeamB());
+                    Append2(r.CurrentGameMode.CurrentRoundTeamA());
+                    Append2(r.CurrentGameMode.CurrentRoundTeamB());
                 } else {
-                    Append(0);
-                    Append(0);
+                    Append2(0);
+                    Append2(0);
                 }
 
-                Append(r.CurrentGameMode.ScoreboardA());
-                Append(r.CurrentGameMode.ScoreboardB());
+                Append2(r.CurrentGameMode.ScoreboardA());
+                Append2(r.CurrentGameMode.ScoreboardB());
 
                 Entities.Player[] players = r.Players.Values.Where(p => p != null).ToArray();
-                Append(players.Length);
+                Append2(players.Length);
                 foreach (Entities.Player p in players) {
-                    Append(p.Id);
-                    Append(p.Kills);
-                    Append(p.Deaths);
-                    Append(p.Flags);
-                    Append(p.Assists + p.Points);
-                    Append(0);
+                    Append2(p.Id);
+                    Append2(p.Kills);
+                    Append2(p.Deaths);
+                    Append2(p.Flags);
+                    Append2(p.Assists + p.Points);
+                    Append2(0);
                 }
 
         }

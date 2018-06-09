@@ -24,19 +24,19 @@ namespace Game.Packets {
 
         public Itemshop(Entities.User u)
             : base((ushort)Enums.Packets.Itemshop) {
-                Append((byte)Core.Constants.Error_OK);
-                Append((ushort)Enums.ItemAction.BuyItem);
-                Append(-1);
-                Append(3);
-                Append(u.Inventory.Items.Count);
-                Append(u.Inventory.Itemlist);
-                Append(u.Money);
-                Append(u.Inventory.SlotState);
+                Append2((byte)Core.Constants.Error_OK);
+                Append2((ushort)Enums.ItemAction.BuyItem);
+                Append2(-1);
+                Append2(3);
+                Append2(u.Inventory.Items.Count);
+                Append2(u.Inventory.Itemlist);
+                Append2(u.Money);
+                Append2(u.Inventory.SlotState);
         }
 
         public Itemshop(ErrorCodes errorCode)
             : base((ushort)Enums.Packets.Itemshop) {
-                Append((uint)errorCode);
+                Append2((uint)errorCode);
         }
     }
 }

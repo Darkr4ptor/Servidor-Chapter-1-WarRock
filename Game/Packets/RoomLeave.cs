@@ -2,13 +2,13 @@
     class RoomLeave : Core.Networking.OutPacket {
         public RoomLeave(Entities.User u, byte oldSlot,  Entities.Room r)
             : base((ushort)Enums.Packets.RoomLeave) {
-            Append(Core.Constants.Error_OK);
-            Append(u.SessionID); // SessionID
-            Append(oldSlot); // Position in Room
-            Append(r.Players.Count); // Remaining player count
-            Append(r.Master); // Master Slot
-            Append(u.XP); // XP
-            Append(u.Money); // Dinar
+            Append2(Core.Constants.Error_OK);
+            Append2(u.SessionID); // SessionID
+            Append2(oldSlot); // Position in Room
+            Append2(r.Players.Count); // Remaining player count
+            Append2(r.Master); // Master Slot
+            Append2(u.XP); // XP
+            Append2(u.Money); // Dinar
         }
     }
 }

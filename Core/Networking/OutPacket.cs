@@ -1,13 +1,21 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 using System.Text;
 
 namespace Core.Networking {
     public abstract class OutPacket {
         private byte xOrKey = 0x96; // Server -> Client
         private StringBuilder builder;
+        private int PacketId;
+        private string[] blocks = new string[0];
+
+        [DllImport("winmm.dll")]
+        public static extern long timeGetTime();
 
         public OutPacket(ushort packetId, byte xOrKey) {
             this.xOrKey = xOrKey;
+            this.PacketId = Convert.ToInt32(packetId);
+
             builder = new StringBuilder();
             Append(Environment.TickCount);
             Append(packetId);
@@ -117,6 +125,15 @@ namespace Core.Networking {
             builder.Append(" ");
         }
 
+        public void Append2(object Block)
+        {
+            
+            
+                Array.Resize(ref blocks, blocks.Length + 1);
+                blocks[blocks.Length - 1] = Convert.ToString(Block);
+            
+            
+        }
         public string Build() {
             string strOutput = builder.ToString();
             Console.WriteLine("OUT :: " + strOutput);
@@ -131,5 +148,49 @@ namespace Core.Networking {
 
             return buffer;
         }
+
+        public byte[] Build2()
+        {
+            try
+            {
+                string sPacket = String.Empty;
+
+                sPacket =
+                    Convert.ToString(timeGetTime()) +
+                    Convert.ToChar(0x20) +
+                    Convert.ToString(PacketId) +
+                    Convert.ToChar(0x20);
+
+
+                for (int i = 0; i < blocks.Length; i++)
+                {
+                    sPacket += blocks[i].Replace(Convert.ToChar(0x20), Convert.ToChar(0x1D)) + Convert.ToChar(0x20);
+                }
+
+                Console.WriteLine("OUT PACKET: " + sPacket);
+                sPacket = Crypt2(sPacket + Convert.ToChar(0x20) + Convert.ToChar(0x0A));
+
+                return Encoding.Default.GetBytes(sPacket);
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        
+        public string Crypt2(string sPacket)
+        {
+            byte[] tTemp = Encoding.Default.GetBytes(sPacket);
+
+            for (int i = 0; i < tTemp.Length; i++)
+            {
+                tTemp[i] = Convert.ToByte(tTemp[i] ^ 0x11); //45
+            }
+
+            return Encoding.Default.GetString(tTemp);
+        }
+
+
     }
 }

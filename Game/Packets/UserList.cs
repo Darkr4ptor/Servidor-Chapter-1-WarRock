@@ -12,16 +12,16 @@ namespace Game.Packets
             : base(28928)
         {
 
-            Append(_userList.Count);
-            Append(_intPage);
+            Append2(_userList.Count);
+            Append2(_intPage);
 
             for (int i = 0; i < _userList.Count; i++)
             {
                 Entities.User u = (Entities.User)_userList[i];
-                Append(i + _intPage * 10); // List Index
-                Append(u.ID); // UID
-                Append(u.SessionID); // Session ID
-                Append(u.Displayname); // Nickname
+                Append2(i + _intPage * 10); // List Index
+                Append2(u.ID); // UID
+                Append2(u.SessionID); // Session ID
+                Append2(u.Displayname); // Nickname
 
                 Objects.Clan Clan = Managers.ClanManager.Instance.GetClan(u.ClanId);
 
@@ -29,17 +29,17 @@ namespace Game.Packets
                     Fill(4, -1);
                 else
                 {
-                    Append(u.ClanId);
-                    Append(Clan.Name);
-                    Append(u.ClanRank);
-                    Append(((u.ClanId > 0) ? 0 : -1)); // Unknown?
+                    Append2(u.ClanId);
+                    Append2(Clan.Name);
+                    Append2(u.ClanRank);
+                    Append2(((u.ClanId > 0) ? 0 : -1)); // Unknown?
                 }
 
-                Append(0); // Unknown
-                Append(16); // Unknown
-                Append(u.XP);
-                Append((byte)u.Premium);
-                Append(0);
+                Append2(0); // Unknown
+                Append2(16); // Unknown
+                Append2(u.XP);
+                Append2((byte)u.Premium);
+                Append2(0);
 
             }
 

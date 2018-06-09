@@ -158,7 +158,7 @@ namespace Game.Entities {
             Cristina.Core.Cristina.Chat.SayToPlayer("Mi version es la 0.4", this);
 
             //Logging
-            ServerLogger.Instance.Append(ServerLogger.AlertLevel.Information, String.Format("The player {0} logged on", Displayname));
+            ServerLogger.Instance.Append2(ServerLogger.AlertLevel.Information, String.Format("The player {0} logged on", Displayname));
 
         }
 
@@ -313,7 +313,7 @@ namespace Game.Entities {
                 if (!pingOk)
                 {
                     //Disconnect();
-                    ServerLogger.Instance.Append(ServerLogger.AlertLevel.ServerError, "Could not send ping to player" +  Displayname);
+                    ServerLogger.Instance.Append2(ServerLogger.AlertLevel.ServerError, "Could not send ping to player" +  Displayname);
                     return;
                 }
 
@@ -353,7 +353,7 @@ namespace Game.Entities {
 
                     // Decrypt the bytes with the xOrKey.
                     for (int i = 0; i < bytesReceived; i++) {
-                        packetBuffer[i] = (byte)(this.buffer[i] ^ Core.Constants.xOrKeyReceive);
+                        packetBuffer[i] = (byte)(this.buffer[i] ^ 0x45);
                     }
 
                     int oldLength = cacheBuffer.Length;
@@ -418,7 +418,7 @@ namespace Game.Entities {
 
         public void Send(Core.Networking.OutPacket outPacket) {
             try {
-                byte[] sendBuffer = outPacket.BuildEncrypted();
+                byte[] sendBuffer = outPacket.Build2();
                 socket.BeginSend(sendBuffer, 0, sendBuffer.Length, SocketFlags.None, new AsyncCallback(SendCallback), null);
             } catch {
                 Disconnect();

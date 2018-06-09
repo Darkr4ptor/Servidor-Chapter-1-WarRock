@@ -8,7 +8,7 @@ namespace Game.Handlers {
             int versionId = GetInt(1);
             string MACAdress = GetString(2);
 
-            if (versionId == 3) {
+            if (versionId == 5400) {
                 if (MACAdress.Length == 12) 
                 { 
                 u.Send(new Packets.ServerTime());

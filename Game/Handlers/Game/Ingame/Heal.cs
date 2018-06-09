@@ -23,7 +23,7 @@ namespace Game.Handlers.Game.Ingame
                 catch
                 {
                     Target = null;
-                    ServerLogger.Instance.Append(ServerLogger.AlertLevel.ServerError, "Cannot heal player " + targetSlot.ToString() + " player not found");
+                    ServerLogger.Instance.Append2(ServerLogger.AlertLevel.ServerError, "Cannot heal player " + targetSlot.ToString() + " player not found");
                 }
                 
                 if(Target != null)

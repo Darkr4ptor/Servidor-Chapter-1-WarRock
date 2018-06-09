@@ -20,7 +20,11 @@ namespace Core.Networking {
             this.OriginalBuffer = inBuffer;
 
             this.fullPacket = Encoding.UTF8.GetString(inBuffer);
+
+            //TESTING... PING IS ANNOYING
+          //  if(!this.fullPacket.Contains(" 4352 "))
             Console.WriteLine(" IN :: " + fullPacket.Remove(fullPacket.Length -1));
+
             string[] tempBlocks = this.fullPacket.Split(' ');
 
             if (!long.TryParse(tempBlocks[0], out this.ticks)) {

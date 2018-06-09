@@ -29,7 +29,7 @@ namespace Game
         {
         }
 
-        public void Append(string _buffer)
+        public void Append2(string _buffer)
         {
             //If the logger is disabled then there is nothing to do here :)
             // All glory to the good-ol days of openwarfaremod.com :'(
@@ -52,7 +52,7 @@ namespace Game
            
         }
         
-        public void Append(AlertLevel Level, string _buffer)
+        public void Append2(AlertLevel Level, string _buffer)
         {
         
             if (Config.SERVER_LOGGER == 0)

@@ -406,7 +406,7 @@ namespace Game.Objects
                      Attacker.AddFakeDeath();
                      Attacker.SubtractKill();
                      Victim.IsAlive = false; //no more fake methods ;)
-                     ServerLogger.Instance.Append(ServerLogger.AlertLevel.Gaming, string.Concat(Attacker.User.Displayname, " killed his teammate ", Victim.User.Displayname));
+                     ServerLogger.Instance.Append2(ServerLogger.AlertLevel.Gaming, string.Concat(Attacker.User.Displayname, " killed his teammate ", Victim.User.Displayname));
                  }
                  else
                  {
@@ -414,7 +414,7 @@ namespace Game.Objects
                      Attacker.AddKill(_isHeadShot);
                      OnDeath(Attacker, Victim);
                  }
-                ServerLogger.Instance.Append(ServerLogger.AlertLevel.Gaming, string.Concat(Attacker.User.Displayname, " killed ", Victim.User.Displayname));
+                ServerLogger.Instance.Append2(ServerLogger.AlertLevel.Gaming, string.Concat(Attacker.User.Displayname, " killed ", Victim.User.Displayname));
             }
 
             handler.Set(12, Victim.Health);
@@ -464,7 +464,7 @@ namespace Game.Objects
                                      }                                   
                                      OnDeath(Attacker, Victim);
                                  }
-                                 catch { ServerLogger.Instance.Append(ServerLogger.AlertLevel.ServerError, string.Concat("Could not kill player ", Victim.User.Displayname, " on vehicle ", DamagedVehicle.Code)); }
+                                 catch { ServerLogger.Instance.Append2(ServerLogger.AlertLevel.ServerError, string.Concat("Could not kill player ", Victim.User.Displayname, " on vehicle ", DamagedVehicle.Code)); }
                              }
                          }
                      }
@@ -482,7 +482,7 @@ namespace Game.Objects
                        Attacker.VehiclesDestroyed++;
                        Attacker.User.VehiclesDestroyed++;
                  }
-                 ServerLogger.Instance.Append(ServerLogger.AlertLevel.Gaming, string.Concat(Attacker.User.Displayname, " destroyed a vehicle: ", DamagedVehicle.Code));
+                 ServerLogger.Instance.Append2(ServerLogger.AlertLevel.Gaming, string.Concat(Attacker.User.Displayname, " destroyed a vehicle: ", DamagedVehicle.Code));
              }
 
         }

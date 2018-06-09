@@ -58,7 +58,7 @@ namespace Game.Handlers.Game.Ingame
                     break;
 
                 default:
-                    ServerLogger.Instance.Append(ServerLogger.AlertLevel.Unknown, "Cannot find repair item " + _playerWeapon.ToString());
+                    ServerLogger.Instance.Append2(ServerLogger.AlertLevel.Unknown, "Cannot find repair item " + _playerWeapon.ToString());
                     break;
             }
 

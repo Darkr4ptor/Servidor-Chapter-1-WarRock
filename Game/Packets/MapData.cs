@@ -2,30 +2,30 @@
     class MapData : Core.Networking.OutPacket {
         public MapData(Entities.Room r)
             : base((ushort)Enums.Packets.MapData) {
-                Append(Core.Constants.Error_OK);
+                Append2(Core.Constants.Error_OK);
 
                 sbyte[] flags = r.Flags;
-                Append(flags.Length);
+                Append2(flags.Length);
                 for (byte i = 0; i < flags.Length; i++) 
-                    Append(flags[i]);
-                Append(900); // ?
+                    Append2(flags[i]);
+                Append2(900); // ?
 
                 lock (r._playerLock) {
-                    Append(r.Players.Count);
+                    Append2(r.Players.Count);
                     foreach (Entities.Player p in r.Players.Values) {
-                        Append(p.Id); // Slot
-                        Append(-1); // ?
-                        Append(p.Kills); // Kills
-                        Append(p.Deaths); // Deaths
-                        Append((byte)p.Class); // Class
-                        Append(p.Health);
-                        Append(-1); // Vehicle ID
-                        Append(-1); // Vehicle Seat
+                        Append2(p.Id); // Slot
+                        Append2(-1); // ?
+                        Append2(p.Kills); // Kills
+                        Append2(p.Deaths); // Deaths
+                        Append2((byte)p.Class); // Class
+                        Append2(p.Health);
+                        Append2(-1); // Vehicle ID
+                        Append2(-1); // Vehicle Seat
                     }
                 }
 
             // TODO: Moved Vehicles :)
-                Append(0);
+                Append2(0);
         }
     }
 }

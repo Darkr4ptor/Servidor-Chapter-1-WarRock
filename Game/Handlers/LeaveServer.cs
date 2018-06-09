@@ -11,7 +11,7 @@ namespace Game.Handlers
                 return;
 
             u.Send(new Packets.LeaveServer());
-            ServerLogger.Instance.Append(ServerLogger.AlertLevel.Information, String.Concat("Player ", u.Displayname, " logged OFF"));
+            ServerLogger.Instance.Append2(ServerLogger.AlertLevel.Information, String.Concat("Player ", u.Displayname, " logged OFF"));
 
         }
     }

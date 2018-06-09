@@ -8,7 +8,7 @@ namespace Game.Handlers.Game.Ingame
     {
         protected override void Handle() //TODO: DO SMTH MORE PRODUCTIVE WITH THIS
         {
-            ServerLogger.Instance.Append(ServerLogger.AlertLevel.Gaming, String.Concat("Player ", Player.User.Displayname, " has been killed"));
+            ServerLogger.Instance.Append2(ServerLogger.AlertLevel.Gaming, String.Concat("Player ", Player.User.Displayname, " has been killed"));
         }
     }
 }

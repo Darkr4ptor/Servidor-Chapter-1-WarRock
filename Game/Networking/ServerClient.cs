@@ -36,7 +36,7 @@ namespace Game.Networking {
                 socket.Connect(ip, port);
                 socket.BeginReceive(buffer, 0, buffer.Length, SocketFlags.None, new AsyncCallback(OnDataReceived), null);
                 Log.Instance.WriteLine("Successfully connected to the auth server.");
-                ServerLogger.Instance.Append(ServerLogger.AlertLevel.Information, "Connected to the auth server");
+                ServerLogger.Instance.Append2(ServerLogger.AlertLevel.Information, "Connected to the auth server");
                 return true;
             } catch { Log.Instance.WriteLine("failed to connect to the auth server."); Disconnect(IsFirstConnect); }
             return false;
@@ -46,7 +46,7 @@ namespace Game.Networking {
             this.serverId = serverId;
             Config.SERVER_ID = serverId;
             Log.Instance.WriteLine(string.Concat("Authorized as server: ", serverId, "."));
-            ServerLogger.Instance.Append(ServerLogger.AlertLevel.Information, "Server authorized");
+            ServerLogger.Instance.Append2(ServerLogger.AlertLevel.Information, "Server authorized");
         }   
 
         private void OnDataReceived(IAsyncResult iAr) {

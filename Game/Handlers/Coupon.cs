@@ -29,7 +29,7 @@ namespace Game.Handlers
                         Managers.CouponManager.Instance.UpdateCouponUses(Coupon.Index, _usesLeft);
 
                         Databases.Game.AsyncQuery("UPDATE coupons SET uses=" + _usesLeft + "  WHERE id=" + Coupon.Index + "; UPDATE user_details SET money=" + u.Money + " WHERE id=" + u.ID + ";");
-                        ServerLogger.Instance.Append(String.Concat("Player ", u.Displayname, " used coupon ", _inputCode));
+                        ServerLogger.Instance.Append2(String.Concat("Player ", u.Displayname, " used coupon ", _inputCode));
                         u.Send(new Packets.Coupon(0, u.Money));
                     }
                     else //already registered :(

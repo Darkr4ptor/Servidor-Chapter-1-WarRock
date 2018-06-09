@@ -12,34 +12,34 @@ namespace Game.Packets
     {
         public VehicleSpawn(Entities.Room r, Entities.Vehicle Vehicle) : base(30000)
         {
-            Append(1);
-            Append(-1);
-            Append(r.ID);
-            Append(2);
-            Append(151);
-            Append(0);
-            Append(1);
-            Append(Vehicle.MapID);
-            Append(500);
-            Append(0);
-            Append(1);
-            Append(0);
-            Append(15);
-            Append(1);
-            Append(5);
-            Append(1);
-            Append(1090909);
-            Append(-60401);
-            Append(1090909);
-            Append(4256.2275);
-            Append(1100.4197);
-            Append(3323.0078);
-            Append(-229.4619);
-            Append(-33.1609);
-            Append(-190.3880);
-            Append(0);
-            Append(0);
-            Append("DU02");
+            Append2(1);
+            Append2(-1);
+            Append2(r.ID);
+            Append2(2);
+            Append2(151);
+            Append2(0);
+            Append2(1);
+            Append2(Vehicle.MapID);
+            Append2(500);
+            Append2(0);
+            Append2(1);
+            Append2(0);
+            Append2(15);
+            Append2(1);
+            Append2(5);
+            Append2(1);
+            Append2(1090909);
+            Append2(-60401);
+            Append2(1090909);
+            Append2(4256.2275);
+            Append2(1100.4197);
+            Append2(3323.0078);
+            Append2(-229.4619);
+            Append2(-33.1609);
+            Append2(-190.3880);
+            Append2(0);
+            Append2(0);
+            Append2("DU02");
         }
     }
 

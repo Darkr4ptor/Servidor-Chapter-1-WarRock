@@ -5,8 +5,8 @@
         public RoomKick(int _playerSeat)
             : base((ushort)Enums.Packets.RoomKick)
         {
-            Append(1);
-            Append(_playerSeat);
+            Append2(1);
+            Append2(_playerSeat);
         }
     }
 }

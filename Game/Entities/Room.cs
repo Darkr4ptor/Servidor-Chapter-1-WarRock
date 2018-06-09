@@ -538,7 +538,7 @@ namespace Game.Entities {
         public void EndGame(Team winning) {
             if (State == RoomState.Playing)
             {
-                ServerLogger.Instance.Append(ServerLogger.AlertLevel.Gaming, String.Concat("Room ", this.ID.ToString(), " finished playing"));
+                ServerLogger.Instance.Append2(ServerLogger.AlertLevel.Gaming, String.Concat("Room ", this.ID.ToString(), " finished playing"));
 
                 //Update player status
                 Player[] players = Players.Values.ToArray();

@@ -16,12 +16,12 @@ namespace Game.Packets {
                 teamDeaths[(byte)Enums.Team.Derbaran] = players.Where(n => n.Team == Enums.Team.Derbaran).Sum(n => n.Deaths);
                 teamDeaths[(byte)Enums.Team.NIU] = players.Where(n => n.Team == Enums.Team.NIU).Sum(n => n.Deaths);
 
-            Append(Core.Constants.Error_OK);
+            Append2(Core.Constants.Error_OK);
 
             if (r.CurrentGameMode != null) //random crash
             {
-                Append(r.CurrentGameMode.CurrentRoundTeamA()); //DERBARAN ROUNDS
-                Append(r.CurrentGameMode.CurrentRoundTeamB()); //NIU ROUNDS
+                Append2(r.CurrentGameMode.CurrentRoundTeamA()); //DERBARAN ROUNDS
+                Append2(r.CurrentGameMode.CurrentRoundTeamB()); //NIU ROUNDS
             }
             else
             {
@@ -30,26 +30,26 @@ namespace Game.Packets {
             }
                 
        
-            Append(teamKills[(byte)Enums.Team.Derbaran]);
-            Append(teamDeaths[(byte)Enums.Team.Derbaran]);
-            Append(teamKills[(byte)Enums.Team.NIU]);
-            Append(teamDeaths[(byte)Enums.Team.NIU]);
-            Append(0);
-            Append(0);
-            Append(players.Length);
+            Append2(teamKills[(byte)Enums.Team.Derbaran]);
+            Append2(teamDeaths[(byte)Enums.Team.Derbaran]);
+            Append2(teamKills[(byte)Enums.Team.NIU]);
+            Append2(teamDeaths[(byte)Enums.Team.NIU]);
+            Append2(0);
+            Append2(0);
+            Append2(players.Length);
                 for (byte i = 0; i < players.Length; i++) {
                     Entities.Player plr = players[i];
-                    Append(plr.Id); // Slot
-                    Append(plr.Kills); // Kills
-                    Append(plr.Deaths); // Deaths
-                    Append(plr.Flags); //Flags
-                    Append(plr.Points); // Points 
-                    Append(plr.MoneyEarned); // Dinar earned
-                    Append(plr.XPEarned); // Exp earned
-                    Append(plr.User.XP); // Player Exp
+                    Append2(plr.Id); // Slot
+                    Append2(plr.Kills); // Kills
+                    Append2(plr.Deaths); // Deaths
+                    Append2(plr.Flags); //Flags
+                    Append2(plr.Points); // Points 
+                    Append2(plr.MoneyEarned); // Dinar earned
+                    Append2(plr.XPEarned); // Exp earned
+                    Append2(plr.User.XP); // Player Exp
                 }
 
-                Append(r.Master);
+                Append2(r.Master);
         }
     }
 }

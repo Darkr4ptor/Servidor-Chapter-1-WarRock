@@ -22,17 +22,17 @@ namespace Game.Packets {
         }
 
         public Authorization(ErrorCodes errorCode) : base((ushort)Enums.Packets.Authorization) {
-            Append((uint)errorCode);
+            Append2((uint)errorCode);
         }
 
         public Authorization(Entities.User u)
             : base((ushort)Enums.Packets.Authorization) {
-                Append(Core.Constants.Error_OK);
-                Append(string.Concat("Gameserver", Config.SERVER_ID));
-                Append(u.SessionID);
-                Append(u.ID);               // User id.
-                Append(u.SessionID);        // User session id.
-                Append(u.Displayname);      // User Displayname (Nickname).
+                Append2(Core.Constants.Error_OK);
+                Append2(string.Concat("Gameserver", Config.SERVER_ID));
+                Append2(u.SessionID);
+                Append2(u.ID);               // User id.
+                Append2(u.SessionID);        // User session id.
+                Append2(u.Displayname);      // User Displayname (Nickname).
 
             // CLAN BLOCKS //
             if(u.ClanId == -1)
@@ -43,10 +43,10 @@ namespace Game.Packets {
 
                 if(Clan != null)
                 {
-                    Append(u.ClanId);
-                    Append(Clan.Name);
-                    Append(u.ClanRank);
-                    Append(u.ClanRank); 
+                    Append2(u.ClanId);
+                    Append2(Clan.Name);
+                    Append2(u.ClanRank);
+                    Append2(u.ClanRank); 
                 }
                 else
                 {
@@ -54,31 +54,48 @@ namespace Game.Packets {
                     Fill(4, -1);
                 }
 
-            }              
+            }
             // CLAN BLOCKS
-                Append((byte)u.Premium);    // Premium Type.
-                Append(0);                  // Unknown.
-                Append(0);                  // Unknown.
-                Append(Core.LevelCalculator.GetLevelforExp(u.XP)); // User Level (based on XP).
-                Append(u.XP);               // User XP.
-                Append(0);                  // Unknown.
-                Append(0);                  // Unknown.
-                Append(u.Money);            // User Money
-                Append(u.Kills);            // User Kills
-                Append(u.Deaths);           // User Deaths
+                Append2(0);
+                Append2((byte)u.Premium);    // Premium Type.
+                Append2(0);                  // Unknown.
+                Append2(-1);                  // Unknown.
+                Append2(0);
+                Append2(Core.LevelCalculator.GetLevelforExp(u.XP)); // User Level (based on XP).
+                Append2(u.XP);               // User XP.
+                Append2(0);                  // Unknown. CASH?
+                Append2(0);                  // Unknown.
+                Append2(u.Money);            // User Money
+                Append2(u.Kills);            // User Kills
+                Append2(u.Deaths);           // User Deaths
                 Fill(5, 0);                 // 5 Unknown blocks
             // SLOT STATE //
-                Append(u.Inventory.SlotState); // T = Slot Enabled, F = Slot disabled.
+                Append2(u.Inventory.SlotState); // T = Slot Enabled, F = Slot disabled.
             // EQUIPMENT //
-                Append(u.Inventory.Equipment.ListsInternal[(byte)Classes.Engineer]);    // Equipment - Engeneer
-                Append(u.Inventory.Equipment.ListsInternal[(byte)Classes.Medic]);       // Equipment - Medic
-                Append(u.Inventory.Equipment.ListsInternal[(byte)Classes.Sniper]);      // Equipment - Sniper
-                Append(u.Inventory.Equipment.ListsInternal[(byte)Classes.Assault]);     // Equipment - Assault
-                Append(u.Inventory.Equipment.ListsInternal[(byte)Classes.Heavy]);       // Equipment - Heavy
+                Append2(u.Inventory.Equipment.ListsInternal[(byte)Classes.Engineer]);    // Equipment - Engeneer
+                Append2(u.Inventory.Equipment.ListsInternal[(byte)Classes.Medic]);       // Equipment - Medic
+                Append2(u.Inventory.Equipment.ListsInternal[(byte)Classes.Sniper]);      // Equipment - Sniper
+                Append2(u.Inventory.Equipment.ListsInternal[(byte)Classes.Assault]);     // Equipment - Assault
+                Append2(u.Inventory.Equipment.ListsInternal[(byte)Classes.Heavy]);       // Equipment - Heavy
             // INVENTORY //
-                Append(u.Inventory.Itemlist);
+                Append2(u.Inventory.Itemlist);
+
+            //COSTUMES //
+            Append2("BA01,^,^,^,^,^,^,^,^,^,^,^,^,^,^,^,^,^,^,^,^,^,^,^,^,^,^,^,^,^");
+            Append2("BA02,^,^,^,^,^,^,^,^,^,^,^,^,^,^,^,^,^,^,^,^,^,^,^,^,^,^,^,^,^");
+            Append2("BA03,^,^,^,^,^,^,^,^,^,^,^,^,^,^,^,^,^,^,^,^,^,^,^,^,^,^,^,^,^");
+            Append2("BA04,^,^,^,^,^,^,^,^,^,^,^,^,^,^,^,^,^,^,^,^,^,^,^,^,^,^,^,^,^");
+            Append2("BA05,^,^,^,^,^,^,^,^,^,^,^,^,^,^,^,^,^,^,^,^,^,^,^,^,^,^,^,^,^");
             // END INVENTORY //
-                Fill(2, 0); // Two unknown blocks.
+            for (int I = 0; I < 30; I++)
+            {
+               Append2("^,");
+            }
+            //Fill(2, 0); // Two unknown blocks.
+            Append2("WARROCK");
+            Append2(1);
+            Append2(0);
+            Append2("Spain");
         }
     }
 }
