@@ -37,6 +37,10 @@ namespace Game.Entities {
         public bool Supermaster { get; private set; }
         public bool FriendlyFire { get; private set; }
         public bool EnableVoteKick { get; private set; }
+        public bool VoteKickStarted { get; set; }
+        public int  VoteKickTimer { get; private set; }
+        public byte VoteKickCount { get; private set; }
+        public byte VoteKickCandidate { get; set; }
         public bool AutoStart { get; set; }
 
         public object RoomLock = new object();
@@ -63,8 +67,7 @@ namespace Game.Entities {
 
         public Room(User master, uint id, string displayName, bool hasPassword, string password, byte maxPlayers, byte roomType, byte levelLimit, bool FriendlyFire, bool enableVotekick, bool _isClanWar)
             : base(id, "Room", displayName) {
-            this.PingLimit = 2; // ALL - TEMP
-
+            this.PingLimit = 0;
             this.Players = new ConcurrentDictionary<byte, Player>();
             this.Spectators = new ConcurrentDictionary<byte, User>();
             this.State = RoomState.Waiting; // Set the state to waiting :)
@@ -131,9 +134,14 @@ namespace Game.Entities {
             Players.TryAdd(p.Id, p);
             // ASSIGN THE ID TO THE MASTER //
 
+            //TADO: finish this shit or remove it raptor
             this.Clan1 = -1;
             this.Clan2 = -1;
 
+            this.VoteKickStarted   = false;
+            this.VoteKickTimer     = 30000;
+            this.VoteKickCount     = 0;
+            this.VoteKickCandidate = 0;
         }
 
         public bool SwitchSide(Entities.Player p) {
@@ -568,14 +576,20 @@ namespace Game.Entities {
                 if (CurrentGameMode != null && CurrentGameMode.Initilized) {
                     if (!CurrentGameMode.IsGoalReached()) {
                         CurrentGameMode.Process();
-                        if (CurrentGameMode != null && !CurrentGameMode.FreezeTick) {
-                            if (LastTick != DateTime.Now.Second) {
+                        if (CurrentGameMode != null && !CurrentGameMode.FreezeTick)
+                        {
+                            if (LastTick != DateTime.Now.Second)
+                            {
                                 LastTick = DateTime.Now.Second;
+
                                 UpTick += 1000;
                                 DownTick -= 1000;
+
                                 Send((new Packets.GameTick(this)).BuildEncrypted());
+
                                 SpawnVehicles();
                                 CheckSpawnProtection();
+                                UpdateVoteKickTimer();
                             }
                         } else {
                             LastTick = -1;
@@ -589,6 +603,38 @@ namespace Game.Entities {
             }
         }
 
+        private void UpdateVoteKickTimer()
+        {
+
+            if(VoteKickStarted)
+            {
+                if(VoteKickCount > (MaximumPlayers / 2))
+                {
+                    Entities.Player KickedPlayer = null;
+                    Players.TryGetValue(VoteKickCandidate, out KickedPlayer);
+
+                    if (KickedPlayer != null)
+                        Log.Instance.WriteDev("KICK MEE");
+                     //   KickedPlayer.Send(new Packets.RoomKick(VoteKickCandidate).BuildEncrypted());
+
+                    VoteKickStarted = false;
+                    VoteKickTimer   = 30000;
+                }
+                else
+                {
+                   VoteKickTimer = -1000;
+
+                    if (VoteKickTimer < 0)
+                    {
+                        VoteKickTimer = 0;
+                        VoteKickStarted = false;
+                    }
+                       
+                }
+                
+            }
+            
+        }
         private void CheckSpawnProtection()
         {
             foreach(Entities.Player Player in Players.Values)

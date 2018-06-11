@@ -37,7 +37,7 @@ namespace Game.Packets {
                     Append(p.User.Kills);           // The total kills of the player.
                     Append(p.User.Deaths);          // The total deaths of the player.
                     Append(new Random().Next(150)); // Unknown?
-                    Append(p.User.XP);              // The current XP of the player | -1 = Special Badge
+                    Append(p.User.XP);              // The current XP of the player | -1 = Special Badge //TODO: WHAT?
                     Append(-1);                     // The id of the vehicle that the player is in. //DARKRAPTOR: CHECK THIS
                     Append(-1);                     // The current slot of the vehicle that the player is in. //DARKRAPTOR: CHECK THIS
                     // CONNECTION INFORMATION //

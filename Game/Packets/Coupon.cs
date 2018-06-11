@@ -8,7 +8,7 @@ namespace Game.Packets
         public Coupon(int _success, uint _dinars)
             : base(30992)
         {
-            Append(_success);//-1 = code alrady registered   0 = success!              
+            Append(_success);//-1 = code already registered   0 = success!              
             Append(0); //??
             Append(_dinars); //Dinars total
         }

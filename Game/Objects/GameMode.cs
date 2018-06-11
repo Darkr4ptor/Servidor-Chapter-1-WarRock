@@ -130,7 +130,7 @@ namespace Game.Objects
                                 //with vanilla in-game experience suggesting some more shit is going on
                                 //server side
                                 //SO... most DJ-DK weapons have reduced personal hitMult. in the DB... consistent with gamefiles and damage calc.
-                                //but RPG-7
+                                //but not RPG-7
                                 #endregion
 
                                 if (!_isRadiusWeapon)
@@ -150,7 +150,7 @@ namespace Game.Objects
                             }
                         }
                       //  else
-                      //      Attacker.User.Disconnect(); ---> Commented out because of client bug with knifes
+                      //      Attacker.User.Disconnect(); ---> Commented out because of client bug with knives
                     }          
                 }
                 else //a vehicle attacked our poor player :(

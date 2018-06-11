@@ -77,17 +77,19 @@ namespace Game.Managers {
             AddGameHandler(Enums.GameSubs.Heal              , new Handlers.Game.Ingame.Heal());
             AddGameHandler(Enums.GameSubs.WeaponSwapping    , new Handlers.Game.Ingame.WeaponSwitch());
             AddGameHandler(Enums.GameSubs.PlayerDeath       , new Handlers.Game.Ingame.PlayerDeath());
-            AddGameHandler(Enums.GameSubs.EnterVehicle, new Handlers.Game.Ingame.VehicleEnter());
-            AddGameHandler(Enums.GameSubs.LeaveVehicle, new Handlers.Game.Ingame.VehicleLeave());
-            AddGameHandler(Enums.GameSubs.ChangeVehicleSeat, new Handlers.Game.Ingame.VehicleChangeSeat());
-            AddGameHandler(Enums.GameSubs.ObjectDamage, new Handlers.Game.Ingame.ObjectDamage());
-            AddGameHandler(Enums.GameSubs.Artillery, new Handlers.Game.Ingame.Artillery());
-            AddGameHandler(Enums.GameSubs.ConfirmDeath, new Handlers.Game.Ingame.KillConfirmed());
+            AddGameHandler(Enums.GameSubs.EnterVehicle      , new Handlers.Game.Ingame.VehicleEnter());
+            AddGameHandler(Enums.GameSubs.LeaveVehicle      , new Handlers.Game.Ingame.VehicleLeave());
+            AddGameHandler(Enums.GameSubs.ChangeVehicleSeat , new Handlers.Game.Ingame.VehicleChangeSeat());
+            AddGameHandler(Enums.GameSubs.ObjectDamage      , new Handlers.Game.Ingame.ObjectDamage());
+            AddGameHandler(Enums.GameSubs.Artillery         , new Handlers.Game.Ingame.Artillery());
+            AddGameHandler(Enums.GameSubs.ConfirmDeath      , new Handlers.Game.Ingame.KillConfirmed());
+           
 
             //Dev handlers here
             if(Config.SERVER_DEBUG == 1)
             {
                 AddExternal(Enums.Packets.RoomSpectate      , new Handlers.RoomSpectate());
+                AddGameHandler(Enums.GameSubs.Votekick, new Handlers.Game.Ingame.VoteKick());
             }
         }
 
